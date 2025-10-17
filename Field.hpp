@@ -5,19 +5,19 @@
 #include <vector>
 class Field
 {
-	public:
-		int size;
-		bool isGot;
-		std::vector<Cell*> cells;
-		std::vector<Ship*> ships;
-
 	private:
+		int m_size;
+		bool m_isGot;
+		std::vector<Cell*> m_cells;
+		std::vector<Ship*> m_ships;
 		int m_aliveShipCount;
 		Ship* m_selectedShip;
 
 	public:
 		Field(int size);
-
+		int GetSize();
+		bool GetIsGot();
+		std::vector<Cell*> GetCells();
 		void AddShip(Ship& ship);
 		void MoveSelectedShip(Vector position);
 		void RotateSelectedShip();

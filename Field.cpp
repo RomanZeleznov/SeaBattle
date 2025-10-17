@@ -2,17 +2,29 @@
 #include <iostream>
 
 Field::Field(int size) :
-	size(size), isGot(false), cells(0), ships(0), m_aliveShipCount(0), m_selectedShip()
+	m_size(size), m_isGot(false), m_cells(0), m_ships(0), m_aliveShipCount(0), m_selectedShip()
 {
 	for (int y = 0; y < size; y++)
 		for (int x = 0; x < size; x++)
-			cells.push_back(new Cell(Vector(x, y)));
+			m_cells.push_back(new Cell(Vector(x, y)));
 	std::cout << "\nField создан" << std::endl;
 }
 
+int Field::GetSize()
+{
+	return m_size;
+}
+bool Field::GetIsGot()
+{
+	return m_isGot;
+}
+std::vector<Cell*> Field::GetCells()
+{
+	return m_cells;
+}
 void Field::AddShip(Ship& ship)
 {
-	ships.push_back(&ship);
+	m_ships.push_back(&ship);
 	std::cout << "Корабль добавлен" << std::endl;
 }
 void Field::MoveSelectedShip(Vector position)
@@ -31,15 +43,15 @@ Ship* Field::GetShipOnPosition(Vector position)
 {
 	Cell c = GetCellOnPosition(position);
 	std::cout << "Получен корабль по координатам" << std::endl;
-	for (Ship* s : ships)
-		if (c.position.x == s->position.x && c.position.y == s->position.y)
+	for (Ship* s : m_ships)
+		if (c.GetPosition().x == s->GetPosition().x && c.GetPosition().y == s->GetPosition().y)
 			return s;
 	return nullptr;
 }
 Cell& Field::GetCellOnPosition(Vector position)
 {
 	std::cout << "Получена ячейка поля по координатам" << std::endl;
-	return *(cells[position.y * size + position.x]);
+	return *(m_cells[position.y * m_size + position.x]);
 }
 void Field::SetSelectedShip(Ship& ship)
 {

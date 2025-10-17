@@ -96,5 +96,6 @@ int main()
 	delete vecPointers[1];
 	delete vecPointers[2];
 	std::cout << "----------------------------------------------------------" << std::endl;
+	
 }
 

@@ -1,15 +1,23 @@
 #include "GameManager.hpp"
 #include <iostream>
 
-GameManager::GameManager() : m_players(0), m_currentPlayerID(-1), isRun(false)
+GameManager::GameManager() : m_players(0), m_currentPlayerID(-1), m_isRun(false)
 {
 	std::cout << "GameManager создан" << std::endl;
 }
 
+bool GameManager::GetIsRun()
+{
+	return m_isRun;
+}
+void GameManager::SetIsRun(bool isRun)
+{
+	m_isRun = isRun;
+}
 void GameManager::AddPlayer(Player& player)
 {
 	m_players.push_back(&player);
-	std::cout << "Игрок \"" << player.name << "\" добавлен" << std::endl;
+	std::cout << "Игрок \"" << player.GetName() << "\" добавлен" << std::endl;
 }
 void GameManager::StartGame()
 {
