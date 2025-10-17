@@ -1,0 +1,83 @@
+#include "Field.hpp"
+#include <iostream>
+
+Field::Field(int size) :
+	size(size), isGot(false), cells(0), ships(0), m_aliveShipCount(0), m_selectedShip()
+{
+	for (int y = 0; y < size; y++)
+		for (int x = 0; x < size; x++)
+			cells.push_back(new Cell(Vector(x, y)));
+	std::cout << "\nField создан" << std::endl;
+}
+
+void Field::AddShip(Ship& ship)
+{
+	ships.push_back(&ship);
+	std::cout << "Корабль добавлен" << std::endl;
+}
+void Field::MoveSelectedShip(Vector position)
+{
+	std::cout << "Выделенный корабль перемещен" << std::endl;
+}
+void Field::RotateSelectedShip()
+{
+	std::cout << "Выделенный корабль повернут" << std::endl;
+}
+void Field::Shot(Vector position)
+{
+	std::cout << "Произведен выстрел" << std::endl;
+}
+Ship* Field::GetShipOnPosition(Vector position)
+{
+	Cell c = GetCellOnPosition(position);
+	std::cout << "Получен корабль по координатам" << std::endl;
+	for (Ship* s : ships)
+		if (c.position.x == s->position.x && c.position.y == s->position.y)
+			return s;
+	return nullptr;
+}
+Cell& Field::GetCellOnPosition(Vector position)
+{
+	std::cout << "Получена ячейка поля по координатам" << std::endl;
+	return *(cells[position.y * size + position.x]);
+}
+void Field::SetSelectedShip(Ship& ship)
+{
+	m_selectedShip = &ship;
+	std::cout << "Установлен выделенный корабль" << std::endl;
+}
+void Field::RemoveSelectedShip()
+{
+	std::cout << "Выделение снято" << std::endl;
+	m_selectedShip = nullptr;
+}
+bool Field::IsAllShipDestroyed()
+{
+	std::cout << "Проверка на уничтожение всех кораблей" << std::endl;
+	return m_aliveShipCount == 0;
+}
+bool Field::IsCorrectShipsPositions()
+{
+	std::cout << "Проверка на корректное расположение кораблей" << std::endl;
+	return false;
+}
+
+bool Field::IsCellInsideShip(Cell& cell, Ship& ship)
+{
+	std::cout << "Проверка на нахождение ячейки внутри корабля" << std::endl;
+	return false;
+}
+bool Field::IsCellNearShip(Cell& cell, Ship& ship)
+{
+	std::cout << "Проверка на нахождение ячейки рядом с кораблем" << std::endl;
+	return false;
+}
+bool Field::IsCorrectShipPosition(Ship& ship)
+{
+	std::cout << "Проверка на корректное расположение корабля" << std::endl;
+	return false;
+}
+void Field::CompileCells()
+{
+	std::cout << "Ячейки скомпилированы" << std::endl;
+}
