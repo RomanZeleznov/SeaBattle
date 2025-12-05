@@ -7,7 +7,6 @@ public class Vector
     {
         this.x = x;
         this.y = y;
-        System.out.println("Vector is created");
     }
 
     public int getX()

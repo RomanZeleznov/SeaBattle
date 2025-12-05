@@ -1,17 +1,22 @@
-public class Ship 
+public class Ship implements Cloneable
 {
     
 	private Vector position, direction;
-	private int length, hp;
+	private int length;
 
+    protected int hp,  countOfSpecialAbility = 1;
 
+    public enum BulletType
+    {
+        Standart, Explosive
+    }
 	public Ship(Vector position, Vector direction, int length)
     {
         setPosition(position);
         setDirection(direction);
         this.length = length;
         this.hp = length;
-        System.out.println("Ship is created");
+        System.out.println("Called ship constructor");
     }
     public Ship(int posX, int posY, int dirX, int dirY, int length)
     {
@@ -20,6 +25,11 @@ public class Ship
         this.length = length;
         this.hp = length;
         System.out.println("Ship is created");
+    }
+     @Override
+    public Ship clone() throws CloneNotSupportedException
+    {
+        return (Ship)super.clone();
     }
     public Vector getPosition()
     {
@@ -41,12 +51,23 @@ public class Ship
     {
         return length;
     }
-	public void TakeDamage()
+	public void TakeDamage(BulletType bulletType)
     {
-        hp--;
+        if(bulletType == BulletType.Standart)
+            hp--;
+        if(bulletType == BulletType.Explosive)
+            hp -= 2;
+        System.out.println("Ship damaged");
+        if(!IsDestroyed())
+            SpecialAbility();
     }
 	public boolean IsDestroyed()
     {
-        return hp == 0;
+        return hp <= 0;
+    }
+    public void SpecialAbility()
+    {
+        countOfSpecialAbility = 0;
+        System.out.println("Ship usign special ability");
     }
 }

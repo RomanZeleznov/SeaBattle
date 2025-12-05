@@ -8,9 +8,7 @@ public abstract class Player
         this.myField = myField;
         this.enemyField = enemyField;
         this.name = name;
-    }
-	public abstract void MakeMove();
-	public abstract void ArrangeShips();   
+    } 
     public Field getMyField()
     {
         return myField;

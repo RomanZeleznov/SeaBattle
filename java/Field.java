@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Field 
+public class Field implements Cloneable
 {
  
     private	int size;
@@ -16,27 +16,55 @@ public class Field
     {
         this.size = size;
         isGot = false;
-        cells = new ArrayList<Cell>();
-        for (int y = 0; y < size; y++) 
+        try
         {
-            for(int x = 0; x < size; x++)
-            cells.add(new Cell(x,y));
+            cells = new ArrayList<Cell>();
+            for (int y = 0; y < size; y++) 
+            {
+                for(int x = 0; x < size; x++)
+                cells.add(new Cell(x,y));
+            }
+        }
+        catch(Throwable t)
+        {
+            System.out.println("Intercepted error: " + t.getMessage());
+            return;
         }
         ships = new ArrayList<Ship>();
         aliveShipCount = 0;
         selectedShip = null;
         System.out.println("Field is created");
     }
-
+    @Override
+    public Field clone() throws CloneNotSupportedException
+    {
+        return (Field)super.clone();
+    }
+    public Field DeepClone() throws CloneNotSupportedException
+    {
+        Field clone = (Field)this.clone();
+        clone.cells = (ArrayList<Cell>)cells.clone();
+        clone.ships = (ArrayList<Ship>)ships.clone();
+        if(selectedShip != null)
+            clone.selectedShip = (Ship)selectedShip.clone();
+        return clone;
+    }
     public ArrayList<Cell> getCells()
     {
-        return (ArrayList<Cell>)cells.clone();
+        return cells;
     }
 	public void AddShip(Ship ship)
     {
-        ships.add(ship);
-        aliveShipCount++;
-        System.out.println("Ship is added");
+        try
+        {   
+            ships.add(ship);
+            aliveShipCount++;
+            System.out.println("Ship is added");
+        }
+        catch(Throwable t)
+        {
+            System.out.println("Intercepted error: " + t.getMessage());
+        }
     }
 	public void MoveSelectedShip(Vector position)
     {
@@ -55,8 +83,19 @@ public class Field
         return null;
     }
 	public Cell GetCellOnPosition(Vector position)
-    {
-        return cells.get(position.getY() * size + position.getX());
+    {   
+        try
+        {
+            int ind = position.getY() * size + position.getX();
+            if(ind >= cells.size())
+                throw new Throwable("Out of array list");
+            return cells.get(ind);
+        }
+        catch(Throwable t)
+        {
+            System.out.println("Intercepted error: " + t.getMessage());
+            return null;
+        }
     }
 	public void SetSelectedShip(Ship ship)
     {

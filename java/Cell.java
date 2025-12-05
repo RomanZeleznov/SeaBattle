@@ -1,5 +1,9 @@
 public class Cell {
-    
+
+    public static final int NotClicked = 0;
+    public static final int CLicked = 1;
+    public static final int Ship = 2;
+    public static final int DestroyedShip = 3;
     private Vector position;
 	private int status;
 	private boolean isCircled;
@@ -12,7 +16,6 @@ public class Cell {
        setStatus(0);
        setIsCirecled(false);
        setPolygonSquare();
-       System.out.println("Cell is created");
     }
 	public Cell(int x, int y)
     {
@@ -20,7 +23,6 @@ public class Cell {
        setStatus(0);
        setIsCirecled(false);
        setPolygonSquare();
-       System.out.println("Cell is created");
     }
     public Vector getPosition()
     {

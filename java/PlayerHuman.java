@@ -1,4 +1,4 @@
-public class PlayerHuman extends Player
+public class PlayerHuman extends Player implements HasPlayerBehavior
 {
 	private boolean isMakingMove;
 

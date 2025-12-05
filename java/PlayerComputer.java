@@ -1,4 +1,5 @@
-public class PlayerComputer extends Player{
+public class PlayerComputer extends Player implements HasPlayerBehavior
+{
     
     public PlayerComputer(Field myField, Field enemyField, String name)
     {
