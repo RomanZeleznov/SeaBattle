@@ -2,7 +2,6 @@
 
 PlayerHuman::PlayerHuman(Field& myField, Field& enemyField, std::string name) : Player(myField, enemyField, name), m_isMakingMove(false)
 {
-	std::cout << "PlayerHuman has been created" << std::endl;
 }
 
 bool PlayerHuman::GetIsMakingMove()

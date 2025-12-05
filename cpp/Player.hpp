@@ -10,13 +10,13 @@ private:
 
 public:
 	Player(Field& myField, Field& enemyField, std::string name);
+	virtual ~Player() {};
 	Field& GetMyField();
 	void SetMyField(Field& myField);
 	Field& GetEnemyField();
 	void SetEnemyField(Field& enemyField);
 	std::string GetName();
 	void SetName(std::string name);
-	virtual void MakeMove();
-	virtual void ArrangeShips();
-
+	virtual void MakeMove() = 0;
+	virtual void ArrangeShips() = 0;
 };

@@ -1,7 +1,6 @@
 #include "Player.hpp"
 Player::Player(Field& myField, Field& enemyField, std::string name) : m_myField(myField), m_enemyField(enemyField), m_name(name)
 {
-	std::cout << "Player has been created" << std::endl;
 }
 Field& Player::GetMyField()
 {

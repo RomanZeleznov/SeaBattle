@@ -16,7 +16,7 @@ private:
 
 public:
 	Field(int size);
-	Field(const Field& field);
+	Field(Field& field, bool isDeep);
 	int GetSize();
 	bool GetIsGot();
 	std::vector<std::shared_ptr<Cell>> GetCells();

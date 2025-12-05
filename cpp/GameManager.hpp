@@ -10,10 +10,9 @@ private:
 
 public:
 	GameManager();
-	GameManager(const GameManager& gm);
 	bool GetIsRun();
 	void SetIsRun(bool isRun);
-	void AddPlayer(Player& player);
+	void AddPlayer(std::shared_ptr<Player> player);
 	void StartGame();
 	void StopGame();
 	void ResumeGame();

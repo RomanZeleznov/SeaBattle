@@ -123,10 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AmmunitionShip.cpp" />
+    <ClCompile Include="ArmoredShip.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="lab5.cpp" />
+    <ClCompile Include="lab6.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerComputer.cpp" />
     <ClCompile Include="PlayerHuman.cpp" />
@@ -135,6 +137,8 @@
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AmmunitionShip.hpp" />
+    <ClInclude Include="ArmoredShip.hpp" />
     <ClInclude Include="Cell.hpp" />
     <ClInclude Include="Field.hpp" />
     <ClInclude Include="GameManager.hpp" />

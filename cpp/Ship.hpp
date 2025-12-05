@@ -2,9 +2,16 @@
 #include "Vector.hpp"
 class Ship
 {
+public:
+	enum BulletType
+	{
+		Standart, Explosive
+	};
+protected:
+	int hp, countOfSpecialAbility = 1;
 private:
 	Vector position, direction;
-	int length, hp;
+	int length;
 
 public:
 	Ship(Vector position, Vector direction, int length);
@@ -13,6 +20,8 @@ public:
 	Vector GetDirection();
 	void SetDirection(Vector direction);
 	int GetLength();
-	void TakeDamage();
+	void TakeDamage(BulletType bulletType);
 	bool IsDestroyed();
+	virtual void SpecialAbility();
+	virtual ~Ship() {};
 };
